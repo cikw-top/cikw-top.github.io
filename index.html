@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- 深度 SEO 优化 -->
+    <title>刺客网汉化组 | 刺破语言壁垒，赋能每一位中文极客 - www.cikw.top</title>
+    <meta name="author" content="刺客网汉化组">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="刺客网, 刺客网汉化组, cikw.top, 软件汉化, 极客工具, 效率神器, 二进制逆向, 汉化组：刺客网">
+    <meta name="description" content="刺客网汉化组官方主页。打磨每一款值得被看见的海外小众利器，坚守形意合一、分毫必较、纯净执念的汉化标准，让优质工具不再受限于语言。">
+    <link rel="canonical" href="https://cikw.github.io/">
+
+    <!-- Open Graph 社交标签 -->
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="刺客网汉化组 | 刺破语言壁垒，赋能每一位中文极客">
+    <meta property="og:description" content="在数字世界的深处，我们不求扬名，像潜行于代码与字符串阴影中的刺客。">
+    <meta property="og:url" content="https://cikw.github.io/">
+    <meta property="og:image" content="logo.png">
+
+    <!-- JSON-LD 结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "刺客网汉化组",
+      "url": "https://www.cikw.top",
+      "logo": "logo.png",
+      "description": "打磨每一款值得被看见的海外小众利器，让优质工具不再受限于语言。",
+      "sameAs": [
+        "https://www.cikw.top",
+        "https://github.com/cikw"
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #090c14;
+            --card-bg: rgba(15, 20, 32, 0.85);
+            --card-border: rgba(255, 90, 0, 0.2);
+            --primary-orange: #ff5500;
+            --accent-glow: #ff7733;
+            --tech-cyan: #00e5ff;
+            --text-main: #e6edf3;
+            --text-muted: #8b949e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 动态背景 Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        /* 顶部 Hero 展台 */
+        .hero-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 45px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 85, 0, 0.08);
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(135deg, rgba(255, 85, 0, 0.5), transparent 45%, rgba(0, 229, 255, 0.2));
+            border-radius: 30px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero-info {
+            flex: 1.2;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px;
+            font-size: 0.85rem;
+            color: var(--primary-orange);
+            background: rgba(255, 85, 0, 0.1);
+            border: 1px solid rgba(255, 85, 0, 0.3);
+            border-radius: 20px;
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .status-pill::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-orange);
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 40%, var(--primary-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .slogan {
+            font-size: 1.15rem;
+            color: #ff944d;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* 3D 立体人物与徽标容器 */
+        .mascot-3d-box {
+            position: relative;
+            width: 280px;
+            height: 340px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            flex-shrink: 0;
+        }
+
+        /* 赛博底座光环 */
+        .holo-pedestal {
+            position: absolute;
+            bottom: 10px;
+            width: 220px;
+            height: 60px;
+            background: radial-gradient(ellipse at center, rgba(255, 85, 0, 0.45) 0%, rgba(255, 85, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(6px);
+            animation: pedestalPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pedestalPulse {
+            0%, 100% { opacity: 0.6; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.08); }
+        }
+
+        /* 3D 浮动角色立绘 */
+        .mascot-image {
+            width: 260px;
+            height: 320px;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.7)) drop-shadow(0 0 20px rgba(255, 85, 0, 0.4));
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: floatHero 4s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        @keyframes floatHero {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(-1.5deg); }
+        }
+
+        /* 按钮样式 */
+        .btn-group {
+            display: flex;
+            gap: 14px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff5500 0%, #ff8800 100%);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(255, 85, 0, 0.35);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 30px rgba(255, 85, 0, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-orange);
+            color: var(--primary-orange);
+            transform: translateY(-2px);
+        }
+
+        /* 通用卡片板块 */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(15px);
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: border-color 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 85, 0, 0.5);
+        }
+
+        .card-header-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        .card-header-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--primary-orange);
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--primary-orange);
+        }
+
+        .narrative-text {
+            color: #c9d1d9;
+            font-size: 1rem;
+            line-height: 1.85;
+            margin-bottom: 16px;
+        }
+
+        .highlight-quote {
+            padding: 16px 20px;
+            background: rgba(255, 85, 0, 0.06);
+            border-left: 3px solid var(--primary-orange);
+            border-radius: 4px 12px 12px 4px;
+            font-style: italic;
+            color: #ffaa80;
+            margin: 20px 0;
+            font-size: 0.98rem;
+        }
+
+        /* 三大汉化标准 Grid 网格 */
+        .standards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .standard-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 22px;
+            transition: all 0.3s ease;
+        }
+
+        .standard-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-orange);
+            background: rgba(255, 85, 0, 0.05);
+        }
+
+        .standard-tag {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .standard-tag span {
+            color: var(--primary-orange);
+        }
+
+        .standard-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* 关于我们与传送门 */
+        .portal-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .portal-info p {
+            margin-bottom: 10px;
+            color: #c9d1d9;
+        }
+
+        .portal-info strong {
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        footer a {
+            color: var(--primary-orange);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 35px 22px;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .mascot-3d-box {
+                width: 100%;
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 赛博暗流背景 -->
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="container">
+        <!-- 头部 Hero 展台：包含你的 3D IP 人物模型与站点宣告 -->
+        <header class="hero-banner">
+            <div class="hero-info">
+                <div class="status-pill">潜行于底层封包的破壁者</div>
+                <h1>刺客网汉化组</h1>
+                <div class="slogan">刺破语言壁垒，赋能每一位中文极客。</div>
+                <p class="narrative-text">
+                    凌晨三点的屏幕光映在脸上，最刺眼的不是后台冷清的访问计数，而是十六进制编辑器里成千上万行动辄报错的二进制封包。
+                </p>
+                <div class="btn-group">
+                    <a href="https://www.cikw.top" target="_blank" rel="noopener me" class="btn btn-primary">
+                        🗡️ 前往传送门 (www.cikw.top)
+                    </a>
+                    <a href="https://github.com/cikw" target="_blank" rel="noopener me" class="btn btn-secondary">
+                        💻 GitHub 项目基地
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3D 浮动角色展示区（可鼠标互动） -->
+            <div class="mascot-3d-box" id="mascotBox">
+                <div class="holo-pedestal"></div>
+                <!-- 引用你上传并抠好背景的 3D IP 立绘图片 -->
+                <img 
+                    src="3d.png" 
+                    alt="刺客网 3D 赛博刺客形象" 
+                    class="mascot-image" 
+                    id="mascotImg"
+                    title="点击直达刺客网主站"
+                    onclick="window.open('https://www.cikw.top','_blank')"
+                />
+            </div>
+        </header>
+
+        <main>
+            <!-- 核心故事与渊源 -->
+            <section class="card">
+                <h2 class="card-header-title">出鞘：刺客之名</h2>
+                <p class="narrative-text">
+                    做软件汉化的人都知道，小众工具的汉化从来不是简单的“中英翻译”。当遇到一款功能顶尖却只有纯英文界面的海外效率神器时，多数人抱怨两句便关掉了网页，而我们选择把它拖进反编译工具。
+                </p>
+                <div class="highlight-quote">
+                    这就是“刺客”这个名字的由来。在数字世界的深处，我们不求扬名，像潜行于代码与字符串阴影中的刺客。
+                </div>
+                <p class="narrative-text">
+                    面对生硬晦涩的底层资源、死锁的编码规范，以及动辄导致界面溢出崩溃的排版限制，每一次精准定位词条、重构字库、反复校对至晨光熹微，都是一次悄无声息的“出鞘”。
+                </p>
+            </section>
+
+            <!-- 汉化标准三大法则 -->
+            <section class="card">
+                <h2 class="card-header-title">我们的汉化标准</h2>
+                <div class="standards-grid">
+                    <div class="standard-item">
+                        <div class="standard-tag"><span>01.</span> 形意合一 · 拒绝机翻</div>
+                        <div class="standard-desc">
+                            不仅是把字符变成汉字，更深入实际工作流，让每一个技术术语和操作逻辑符合中文母语使用者的直觉。
+                        </div>
+                    </div>
+                    <div class="standard-item">
+                        <div class="standard-tag"><span>02.</span> 分毫必较 · 界面重塑</div>
+                        <div class="standard-desc">
+                            逐像素调整由于字符长度改变引发的控件错位，消除乱码与 UI 溢出，保留原版所有精髓。
+                        </div>
+                    </div>
+                    <div class="standard-item">
+                        <div class="standard-tag"><span>03.</span> 纯净执念 · 毫发无伤</div>
+                        <div class="standard-desc">
+                            坚守极客本心，绝不捆绑附加组件，不塞弹窗广告，交付最轻巧、干净的本地化体验。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 关于我们与温度 -->
+            <section class="card">
+                <h2 class="card-header-title">关于我们 (About Us)</h2>
+                <div class="portal-content">
+                    <div class="portal-info">
+                        <p><strong>站点：</strong>刺客网汉化组</p>
+                        <p><strong>传送门：</strong><a href="https://www.cikw.top" target="_blank" rel="noopener me" style="color: var(--primary-orange); text-decoration: none; font-weight: bold;">https://www.cikw.top</a></p>
+                        <p><strong>我们在做什么：</strong>打磨每一款值得被看见的海外小众利器，让优质工具不再受限于语言。如果你也热爱极致与纯粹，欢迎来这里找回最初的技术温度，或与我们交换一段同行的印记。</p>
+                    </div>
+                </div>
+                <div class="highlight-quote" style="margin-bottom: 0;">
+                    每一次敲下回车将封包打包完成，看到原本冰冷陌生的外文界面彻底服帖顺畅地在屏幕上运转，那种纯粹的成就感无可替代。
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2026 刺客网汉化组 · 刺破语言壁垒 · 主阵地：<a href="https://www.cikw.top" target="_blank" rel="noopener">www.cikw.top</a></p>
+        </footer>
+    </div>
+
+    <!-- 交互微动效：鼠标视差跟随 + 赛博微粒背景 -->
+    <script>
+        // 1. 鼠标悬停 3D 人物轻度倾角视差
+        const box = document.getElementById('mascotBox');
+        const img = document.getElementById('mascotImg');
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = box.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const dx = (e.clientX - cx) / (window.innerWidth / 2);
+            const dy = (e.clientY - cy) / (window.innerHeight / 2);
+
+            img.style.transform = `translate(${dx * 12}px, ${dy * 12}px) rotateY(${dx * 15}deg) rotateX(${-dy * 15}deg)`;
+        });
+
+        // 2. 全屏低能耗暗夜粒子
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let w, h;
+        const pts = [];
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        for (let i = 0; i < 40; i++) {
+            pts.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                radius: Math.random() * 1.8 + 0.8
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            for (let i = 0; i < pts.length; i++) {
+                const p = pts[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = w;
+                if (p.x > w) p.x = 0;
+                if (p.y < 0) p.y = h;
+                if (p.y > h) p.y = 0;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255, 85, 0, 0.4)";
+                ctx.fill();
+
+                for (let j = i + 1; j < pts.length; j++) {
+                    const p2 = pts[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(255, 85, 0, ${0.12 * (1 - dist / 120)})`;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
+</html>
